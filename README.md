@@ -35,7 +35,9 @@ With the application started, we first have to add an device.
 ![image](https://github.com/HitoHitoNika/WoL-Server/assets/103290810/4af9008c-edcf-4d15-8d09-cf9799477aae)
 There are two things we have to care about:
 - We have to enter the devices mac adress
-- We DONT enter the - between each part of the MAC
+- We DONT enter the - or : between each part of the MAC
+- Example: DONT 01:23:45:67:89:FF instead do 0123456789FF
+
 You can also choose between device type:
 - PC
 - Laptop
