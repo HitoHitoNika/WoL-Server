@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wake-on-LAN</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Eigenes CSS-Styling -->
     <style>
-        /* Dunkles Thema */
         body {
             background-color: #1a1a1a;
             color: #fff;
@@ -24,9 +21,7 @@
             background-color: #333 !important;
         }
     </style>
-    <!-- JavaScript-Funktion zum Wecken von Geräten per Wake-on-LAN -->
     <script>
-        // JavaScript-Funktion, um den src-Wert des Bildes basierend auf device.type_id zu ändern
     function setDeviceImage(typeId) {
         var imageElement = document.getElementById(typeId);
         console.log(typeId)
@@ -41,7 +36,6 @@
         case '3':
             imagePath = "./Pi_icon.png";
             break;
-        // Weitere cases für andere Typen, falls erforderlich
         default:
             imagePath = "Laptop_icon.png";
         }
@@ -73,30 +67,26 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">Wake-on-LAN</a>
+        <a class="navbar-brand" href="">Wake-on-LAN</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="https://github.com/HitoHitoNika/WoL-Server">GitHub</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="container mt-5">
-    <!-- Formular zum Hinzufügen neuer Geräte -->
     <div class="row mb-3">
         <div class="col-md-6">
             <form action="/add_device" method="post">
                 <div class="form-group">
-                    <label for="name">Gerätename:</label>
+                    <label for="name">Name:</label>
                     <input type="text" class="form-control" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="type_id">Gerätetyp:</label>
+                    <label for="type_id">Type:</label>
                     <select class="form-control" id="type_id" name="type_id">
                         <option value="1">PC</option>
                         <option value="2">Laptop</option>
@@ -104,23 +94,21 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="mac_address">MAC-Adresse:</label>
+                    <label for="mac_address">MAC-Adress:</label>
                     <input type="text" class="form-control" id="mac_address" name="mac_address" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Gerät hinzufügen</button>
+                <button type="submit" class="btn btn-primary">Add device</button>
             </form>
         </div>
     </div>
 
     <div class="row">
-        <!-- Gerät Quadrat -->
         {% for device in devices %}
         <div class="col-md-4 mb-4">
            <div class="card">
                 <img src="" id={{device.type_id}} class="card-img-top" alt="Device Icon" style="width: 50px; height: 50px;">
                 <div class="card-body">
                     <h5 class="card-title">{{ device.name }}</h5>
-                    <p class="card-text">Status: offline</p>
                     <button onclick="wakeDevice('{{ device.mac_address }}')" class="btn btn-primary">Wake-on-LAN</button>
                 </div>
             </div>
@@ -131,8 +119,6 @@
         {% endfor %}
     </div>
 </div>
-
-    <!-- Bootstrap JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
