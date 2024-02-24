@@ -35,6 +35,7 @@ Since i dont want to mess with any license stuff, you have to add your own icons
 - Laptop_icon.png
 - Pc_icon.png
 - Pi_icon.png
+
 To add these Icons we save them in the templates Folder, where the index.html can also be found.
 
 ## User Guide
