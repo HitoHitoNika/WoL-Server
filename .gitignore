@@ -1,6 +1,9 @@
+#Projekt Files
 templates/Laptop_icon.png
 templates/Pc_icon.png
 templates/Pi_icon.png
 devices.csv
-
+# Venv Folder
 venv/
+# IDE Files
+.idea/
