@@ -41,5 +41,5 @@ You can also choose between device type:
 - Laptop
 - Raspberry Pi
 After we have added our device it should look like this:
-![image](https://github.com/HitoHitoNika/WoL-Server/assets/103290810/6d180e8f-0ce4-4b3e-a30b-21073510ed35)
+![image](https://github.com/HitoHitoNika/WoL-Server/assets/103290810/47567188-8443-48d4-8ab4-8ca98d6e1450)
 **The Status is still work in progress, dont rely on it**
