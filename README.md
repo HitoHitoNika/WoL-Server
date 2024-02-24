@@ -1,3 +1,4 @@
+<!-- TOC -->
 # WoL-Server
 
 ## Description
@@ -29,3 +30,16 @@ python app.py
 This will start the application. You can then access it in your web browser at `http://localhost:5000`.
 You can reach the website by using the Devices-IP aswell.
 
+## User Guide
+With the application started, we first have to add an device.
+![image](https://github.com/HitoHitoNika/WoL-Server/assets/103290810/4af9008c-edcf-4d15-8d09-cf9799477aae)
+There are two things we have to care about:
+- We have to enter the devices mac adress
+- We DONT enter the - between each part of the MAC
+You can also choose between device type:
+- PC
+- Laptop
+- Raspberry Pi
+After we have added our device it should look like this:
+![image](https://github.com/HitoHitoNika/WoL-Server/assets/103290810/6d180e8f-0ce4-4b3e-a30b-21073510ed35)
+**The Status is still work in progress, dont rely on it**
