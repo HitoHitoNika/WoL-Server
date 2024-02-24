@@ -42,4 +42,3 @@ You can also choose between device type:
 - Raspberry Pi
 After we have added our device it should look like this:
 ![image](https://github.com/HitoHitoNika/WoL-Server/assets/103290810/47567188-8443-48d4-8ab4-8ca98d6e1450)
-**The Status is still work in progress, dont rely on it**
