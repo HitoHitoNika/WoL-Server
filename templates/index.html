@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wake-on-LAN</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Eigenes CSS-Styling -->
+    <style>
+        /* Dunkles Thema */
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        .navbar-dark .navbar-brand, .navbar-dark .navbar-nav .nav-link {
+            color: #fff;
+        }
+        .card {
+            background-color: #333;
+            color: #fff;
+        }
+        .navbar {
+            background-color: #333 !important;
+        }
+    </style>
+    <!-- JavaScript-Funktion zum Wecken von Geräten per Wake-on-LAN -->
+    <script>
+        // JavaScript-Funktion, um den src-Wert des Bildes basierend auf device.type_id zu ändern
+    function setDeviceImage(typeId) {
+        var imageElement = document.getElementById(typeId);
+        console.log(typeId)
+        var imagePath = "";
+        switch (typeId) {
+        case '1':
+            imagePath = "./Pc_icon.png";
+            break;
+        case '2':
+            imagePath = "./Laptop_icon.png";
+            break;
+        case '3':
+            imagePath = "./Pi_icon.png";
+            break;
+        // Weitere cases für andere Typen, falls erforderlich
+        default:
+            imagePath = "Laptop_icon.png";
+        }
+        imageElement.src = imagePath;
+    }
+        function wakeDevice(macAddress) {
+            fetch('/wake_device', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'mac_address=' + macAddress,
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Magic Packet sent successfully');
+                } else {
+                    alert('Error sending Magic Packet');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending request:', error);
+            });
+        }
+
+
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Wake-on-LAN</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+    <!-- Formular zum Hinzufügen neuer Geräte -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <form action="/add_device" method="post">
+                <div class="form-group">
+                    <label for="name">Gerätename:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="type_id">Gerätetyp:</label>
+                    <select class="form-control" id="type_id" name="type_id">
+                        <option value="1">PC</option>
+                        <option value="2">Laptop</option>
+                        <option value="3">Raspberry Pi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mac_address">MAC-Adresse:</label>
+                    <input type="text" class="form-control" id="mac_address" name="mac_address" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Gerät hinzufügen</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Gerät Quadrat -->
+        {% for device in devices %}
+        <div class="col-md-4 mb-4">
+           <div class="card">
+                <img src="" id={{device.type_id}} class="card-img-top" alt="Device Icon" style="width: 50px; height: 50px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ device.name }}</h5>
+                    <p class="card-text">Status: offline</p>
+                    <button onclick="wakeDevice('{{ device.mac_address }}')" class="btn btn-primary">Wake-on-LAN</button>
+                </div>
+            </div>
+        </div>
+        <script>
+        setDeviceImage('{{device.type_id}}');
+        </script>
+        {% endfor %}
+    </div>
+</div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
