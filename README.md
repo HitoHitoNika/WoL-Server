@@ -31,6 +31,7 @@ This will start the application. You can then access it in your web browser at `
 You can reach the website by using the Devices-IP aswell.
 
 6. Add Icons
+
 Since i dont want to mess with any license stuff, you have to add your own icons. The need the following naming scheme:
 - Laptop_icon.png
 - Pc_icon.png
